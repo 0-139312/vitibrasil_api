@@ -1,0 +1,6 @@
+flask
+flasgger
+python-dotenv
+requests
+beautifulsoup4
+pandas
