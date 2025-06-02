@@ -11,7 +11,7 @@ from app.routes.exportacao import exportacao_bp
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    Swagger(app)
+    Swagger(app, config={"specs_route": "/apidocs"})
 
     app.register_blueprint(producao_bp)
     app.register_blueprint(processamento_bp)
