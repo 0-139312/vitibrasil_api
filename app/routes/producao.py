@@ -2,9 +2,9 @@ from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 from app.services.scraper import get_data_all_sections
 
-producao_bp = Blueprint('producao', __name__)
+producao_bp = Blueprint('producao', __name__, url_prefix='/producao')
 
-@producao_bp.route('/producao', methods=['GET'])
+@producao_bp.route('', methods=['GET'])
 @swag_from({
     'tags': ['Produção'],
     'parameters': [

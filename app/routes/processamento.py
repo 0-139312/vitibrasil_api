@@ -2,9 +2,9 @@ from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 from app.services.scraper import get_data_all_sections
 
-processamento_bp = Blueprint('processamento', __name__)
+processamento_bp = Blueprint('processamento', __name__, url_prefix='/processamento')
 
-@processamento_bp.route('/processamento', methods=['GET'])
+@processamento_bp.route('', methods=['GET'])
 @swag_from({
     'tags': ['Processamento'],
     'parameters': [

@@ -11,21 +11,20 @@ from app.routes.exportacao import exportacao_bp
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+
     Swagger(app, config={
         "headers": [],
         "specs": [
             {
                 "endpoint": 'apispec_1',
                 "route": '/apispec_1.json',
-                "rule_filter": lambda rule: True,  # todas as rotas
-                "model_filter": lambda tag: True,  # todos os modelos
+                "rule_filter": lambda rule: True,
+                "model_filter": lambda tag: True,
             }
         ],
-        "static_url_path": "/flasgger_static",
         "swagger_ui": True,
-        "specs_route": "/apidocs" 
+        "specs_route": "/apidocs"
     })
-
 
     app.register_blueprint(producao_bp)
     app.register_blueprint(processamento_bp)

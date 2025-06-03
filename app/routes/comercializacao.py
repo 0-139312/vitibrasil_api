@@ -2,9 +2,9 @@ from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 from app.services.scraper import get_data_all_sections
 
-comercializacao_bp = Blueprint('comercializacao', __name__)
+comercializacao_bp = Blueprint('comercializacao', __name__, url_prefix='/comercializacao')
 
-@comercializacao_bp.route('/comercializacao', methods=['GET'])
+@comercializacao_bp.route('', methods=['GET'])
 @swag_from({
     'tags': ['Comercialização'],
     'parameters': [

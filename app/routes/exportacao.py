@@ -3,9 +3,9 @@ from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 from app.services.scraper import get_data_all_sections
 
-exportacao_bp = Blueprint('exportacao', __name__)
+exportacao_bp = Blueprint('exportacao', __name__, url_prefix='/exportacao')
 
-@exportacao_bp.route('/exportacao', methods=['GET'])
+@exportacao_bp.route('', methods=['GET'])
 @swag_from({
     'tags': ['Exportação'],
     'parameters': [

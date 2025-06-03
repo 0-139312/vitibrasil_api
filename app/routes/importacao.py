@@ -2,9 +2,9 @@ from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 from app.services.scraper import get_data_all_sections
 
-importacao_bp = Blueprint('importacao', __name__)
+importacao_bp = Blueprint('importacao', __name__, url_prefix='/importacao')
 
-@importacao_bp.route('/importacao', methods=['GET'])
+@importacao_bp.route('', methods=['GET'])
 @swag_from({
     'parameters': [
         {
