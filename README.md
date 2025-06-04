@@ -51,9 +51,9 @@ https://vitibrasil-api-rmzy.onrender.com/apidocs
 
 ## Como rodar localmente
 
+```bash
 1. Clone o projeto
 
-```bash
 git clone https://github.com/SEU_USUARIO/vitibrasil_api.git
 cd vitibrasil_api
 
@@ -90,8 +90,10 @@ vitibrasil_api/
 ├── run.py             # Entry point da aplicação
 ├── requirements.txt   # Pacotes e dependências
 └── README.md
+```
 
-##Autor
+## Autor
+
 Projeto acadêmico desenvolvido por Alexandre Mazzini na pós-graduação de Machine Learning Engineering — FIAP.
 
 Link para acesso à API em produção:
