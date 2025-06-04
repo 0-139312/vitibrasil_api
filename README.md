@@ -96,10 +96,12 @@ vitibrasil_api/
 
 https://drive.google.com/drive/folders/13PDYRtId121lKwG8U4mbZ_akRmTkcpqg?usp=drive_link
 
+## Link para acesso à API em produção
+
+https://vitibrasil-api-rmzy.onrender.com/apidocs
 
 ## Autor
 
 Projeto acadêmico desenvolvido por Alexandre Mazzini na pós-graduação de Machine Learning Engineering — FIAP.
 
-Link para acesso à API em produção:
-https://vitibrasil-api-rmzy.onrender.com/apidocs
+
