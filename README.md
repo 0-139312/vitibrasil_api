@@ -92,6 +92,11 @@ vitibrasil_api/
 └── README.md
 ```
 
+## Link para o vídeo e diagrama
+
+https://drive.google.com/drive/folders/13PDYRtId121lKwG8U4mbZ_akRmTkcpqg?usp=drive_link
+
+
 ## Autor
 
 Projeto acadêmico desenvolvido por Alexandre Mazzini na pós-graduação de Machine Learning Engineering — FIAP.
