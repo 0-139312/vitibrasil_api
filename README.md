@@ -1,119 +1,98 @@
 # Vitibrasil API
 
-> API REST para acesso estruturado aos dados da vitivinicultura brasileira coletados da Embrapa.
+API REST construída em Flask para centralizar os dados públicos da vitivinicultura no Brasil, extraídos do site da Embrapa. Esta API organiza e entrega dados de produção, processamento, comercialização, exportação e importação de uvas e vinhos em formato estruturado e documentado via Swagger.
 
-## Problema que resolve
+## Objetivo
 
-Os dados da vitivinicultura no Brasil estão dispersos em arquivos CSV escondidos em páginas HTML da Embrapa, dificultando sua utilização para análises, visualizações ou aplicações de Machine Learning. Esta API centraliza e estrutura essas informações para facilitar o consumo automatizado.
+Fornecer uma API pública confiável com dados históricos da vitivinicultura brasileira, permitindo futuras análises, visualizações e desenvolvimento de modelos preditivos de Machine Learning para:
 
-## Stack utilizada
-
-* Python 3.13+
-* Flask
-* Flasgger (Swagger UI)
-* requests + BeautifulSoup + pandas
-* dotenv
-
-## Estrutura do projeto
-
-```
-vitibrasil_api/
-├── app/
-│   ├── routes/            # Endpoints da API REST
-│   ├── services/          # Web scraping + fallback
-│   ├── config.py          # Configuração da API e paths
-│   └── __init__.py        # Criação do app Flask
-├── data/fallback/         # Arquivos CSV de fallback por tipo
-├── requirements.txt       # Dependências do projeto
-├── debug_scraper.py       # Script para depuração
-└── README.md
-```
-
-## Endpoints principais
-
-* `/producao`
-* `/processamento`
-* `/comercializacao`
-* `/importacao`
-* `/exportacao`
-
-Todos aceitam:
-
-```
-?limit=10&offset=0&ano=2021&produto=Vinho&pais=Chile
-```
-
-(Opcional, conforme o tipo de dado)
-
-## Como rodar localmente
-
-```bash
-# 1. Clone o repositório
-$ git clone https://github.com/seunome/vitibrasil_api.git
-$ cd vitibrasil_api
-
-# 2. Crie o ambiente virtual
-$ python -m venv venv
-$ source venv/bin/activate     # Linux/macOS
-$ .\venv\Scripts\activate      # Windows
-
-# 3. Instale as dependências
-$ pip install -r requirements.txt
-
-# 4. Inicie a API
-$ flask run
-
-# 5. Acesse a documentação
-http://localhost:5000/apidocs
-```
-
-## Variáveis de ambiente (.env)
-
-```
-FLASK_APP=app
-FALLBACK_DIR=data/fallback
-```
-
-## Fallback garantido
-
-Se o site da Embrapa estiver offline, a API automaticamente usa os CSVs cacheados em `data/fallback/<tipo>`.
-
-## Como testar
-
-```bash
-$ python debug_scraper.py
-```
-
-Esse script testa leitura real + fallback de todos os tipos de dados.
-
-## Deploy sugerido (Render)
-
-* Suba o projeto para o GitHub
-* Crie um novo web service no [Render](https://render.com/)
-* Configure a build command:
-
-```
-pip install -r requirements.txt
-```
-
-* Start command:
-
-```
-flask run --host=0.0.0.0 --port=10000
-```
-
-* Configure env vars (.env)
-
-## Diagrama da arquitetura
-
-**Fonte** (site da Embrapa)
-↳ **Web Scraper** (`requests`, `BeautifulSoup`, `pandas`)
-↳ **Fallback local** (CSVs salvos)
-↳ **API Flask REST** (`/producao`, `/exportacao`...)
-↳ **Swagger UI** (`/apidocs`)
-↳ **Usuário** ou **aplicativo externo**
-↳ **Futura pipeline de ML / dashboard**
+- Prever produção e consumo;
+- Identificar tendências de importação/exportação;
+- Avaliar sazonalidade e comportamento de mercado.
 
 ---
 
-**Vitibrasil API** - Desenvolvido para a disciplina de Machine Learning Engineering (FIAP)
+## Principais Funcionalidades
+
+- Coleta de dados via Web Scraping com fallback para arquivos CSV;
+- API REST com rotas separadas para cada tipo de dado;
+- Documentação completa em Swagger (Flasgger);
+- Deploy público via Render;
+- Suporte a filtros e paginação;
+- Estrutura modular e pronta para expansão.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Linguagem**: Python 3
+- **Framework**: Flask
+- **Scraping**: requests, BeautifulSoup, pandas
+- **Documentação**: Swagger (via Flasgger)
+- **Deploy**: Render (produção pública)
+- **Outros**: gunicorn, python-dotenv
+
+---
+
+## Endpoints Disponíveis
+
+Cada endpoint retorna dados estruturados com filtros por ano, produto, país, cultivar, etc.
+
+- `/producao`
+- `/processamento`
+- `/comercializacao`
+- `/importacao`
+- `/exportacao`
+
+A documentação interativa está disponível em:
+https://vitibrasil-api-rmzy.onrender.com/apidocs
+
+---
+
+## Como rodar localmente
+
+1. Clone o projeto
+
+```bash
+git clone https://github.com/SEU_USUARIO/vitibrasil_api.git
+cd vitibrasil_api
+
+2. Crie e ative o ambiente virtual
+
+python -m venv venv
+# Windows:
+venv\Scripts\activate
+# Linux/macOS:
+source venv/bin/activate
+
+3. Instale as dependências
+
+pip install -r requirements.txt
+
+4. Execute o servidor local
+
+python run.py
+
+Acesse em: http://localhost:5000/apidocs
+
+## Estrutura do projeto
+
+vitibrasil_api/
+│
+├── app/
+│   ├── routes/        # Rotas por seção (produção, importação, etc.)
+│   ├── services/      # Scraper, helpers e lógica
+│   ├── config.py      # Variáveis globais
+│   └── __init__.py    # Criação do app Flask
+│
+├── data/              # Fallback local (.csv)
+│
+├── run.py             # Entry point da aplicação
+├── requirements.txt   # Pacotes e dependências
+└── README.md
+
+##Autor
+Projeto acadêmico desenvolvido por Alexandre Mazzini na pós-graduação de Machine Learning Engineering — FIAP.
+
+Link para acesso à API em produção:
+https://vitibrasil-api-rmzy.onrender.com/apidocs
